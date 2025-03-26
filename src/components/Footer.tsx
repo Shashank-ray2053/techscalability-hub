@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gradient">TechScalability</h3>
+            <h3 className="text-xl font-bold text-gradient">TechXplore</h3>
             <p className="text-muted-foreground">
               Empowering businesses with scalable IT solutions and next-gen technology.
             </p>
@@ -115,8 +115,8 @@ export function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-primary shrink-0 mr-3" />
-                <a href="mailto:info@techscalability.com" className="text-muted-foreground hover:text-primary transition-colors">
-                  info@techscalability.com
+                <a href="mailto:info@techxplore.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  info@techxplore.com
                 </a>
               </li>
             </ul>
@@ -125,7 +125,7 @@ export function Footer() {
 
         <div className="border-t border-border mt-10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} TechScalability. All rights reserved.
+            &copy; {new Date().getFullYear()} TechXplore. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">

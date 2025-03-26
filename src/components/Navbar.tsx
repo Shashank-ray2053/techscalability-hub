@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
@@ -46,7 +46,7 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <a href="/" className="text-2xl font-bold text-gradient">
-              TechScalability
+              TechXplore
             </a>
           </div>
 

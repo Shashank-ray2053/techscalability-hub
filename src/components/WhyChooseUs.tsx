@@ -1,6 +1,6 @@
 
 import { SectionContainer } from "@/components/ui/Container";
-import { GlassCard } from "@/components/ui/Card";
+import { GlassCard } from "@/components/ui/CustomCard";
 import { 
   Clock, Award, TrendingUp, Cpu
 } from "lucide-react";

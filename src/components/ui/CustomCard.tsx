@@ -8,7 +8,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   hover?: boolean;
 }
 
-export function Card({ children, className, hover = false, ...props }: CardProps) {
+export function CustomCard({ children, className, hover = false, ...props }: CardProps) {
   return (
     <div
       className={cn(
