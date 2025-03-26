@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Download } from "lucide-react";
 import { services } from "@/components/Services";
 import { ConsultationForm } from "@/components/ConsultationForm";
 import {
@@ -30,6 +30,16 @@ export function ServiceDetails({ service }: ServiceDetailsProps) {
     "Scalable solutions",
     "Industry-leading security practices",
   ];
+
+  const handleBrochureDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/TechXplore-Brochure.pdf';
+    link.download = 'TechXplore-Brochure.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="py-4 space-y-6">
@@ -93,7 +103,8 @@ export function ServiceDetails({ service }: ServiceDetailsProps) {
           </DialogContent>
         </Dialog>
         
-        <Button variant="outline" className="flex-1">
+        <Button variant="outline" className="flex-1 flex items-center justify-center" onClick={handleBrochureDownload}>
+          <Download className="h-4 w-4 mr-2" />
           Download Brochure
         </Button>
       </div>
