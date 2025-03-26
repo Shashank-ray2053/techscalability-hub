@@ -4,12 +4,20 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { ConsultationForm } from "@/components/ConsultationForm";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
-  { name: "Case Studies", href: "#case-studies" },
   { name: "Blog", href: "#blog" },
   { name: "Contact", href: "#contact" },
 ];
@@ -61,7 +69,20 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Button className="ml-4">Get Started</Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="ml-4">Get Started</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[500px]">
+                <DialogHeader>
+                  <DialogTitle>Free Consultation</DialogTitle>
+                  <DialogDescription>
+                    Fill out this form to request a free consultation with our experts.
+                  </DialogDescription>
+                </DialogHeader>
+                <ConsultationForm />
+              </DialogContent>
+            </Dialog>
           </nav>
 
           {/* Mobile Navigation Toggle */}
@@ -100,7 +121,20 @@ export function Navbar() {
               </a>
             ))}
             <div className="pt-2 pb-1">
-              <Button className="w-full">Get Started</Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="w-full" onClick={() => setIsOpen(false)}>Get Started</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[500px]">
+                  <DialogHeader>
+                    <DialogTitle>Free Consultation</DialogTitle>
+                    <DialogDescription>
+                      Fill out this form to request a free consultation with our experts.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <ConsultationForm />
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>

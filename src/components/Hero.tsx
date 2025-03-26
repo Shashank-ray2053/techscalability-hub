@@ -2,6 +2,16 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/Container";
 import { ArrowRight, Check } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { ConsultationForm } from "@/components/ConsultationForm";
+import { LiveChat } from "@/components/LiveChat";
 
 export function Hero() {
   return (
@@ -32,13 +42,40 @@ export function Hero() {
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-8 opacity-0 animate-reveal-delay-2">
-            <Button size="lg" className="font-medium px-6 py-6">
-              Get Free Consultation
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button size="lg" variant="outline" className="font-medium px-6 py-6">
-              Explore Our Solutions
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="lg" className="font-medium px-6 py-6">
+                  Get Free Consultation
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[500px]">
+                <DialogHeader>
+                  <DialogTitle>Free Consultation</DialogTitle>
+                  <DialogDescription>
+                    Fill out this form to request a free consultation with our experts.
+                  </DialogDescription>
+                </DialogHeader>
+                <ConsultationForm />
+              </DialogContent>
+            </Dialog>
+            
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="lg" variant="outline" className="font-medium px-6 py-6">
+                  Live Chat Support
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Live Chat Support</DialogTitle>
+                  <DialogDescription>
+                    Chat with our support team for immediate assistance.
+                  </DialogDescription>
+                </DialogHeader>
+                <LiveChat />
+              </DialogContent>
+            </Dialog>
           </div>
           
           {/* Trust badges */}
