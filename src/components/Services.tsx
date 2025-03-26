@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ServiceDetails } from "@/components/ServiceDetails";
+import { ConsultationForm } from "@/components/ConsultationForm";
 
 export const services = [
   {
