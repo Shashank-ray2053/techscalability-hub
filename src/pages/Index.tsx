@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
+import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
 // Initialization function to handle animations
@@ -61,6 +62,7 @@ const Index = () => {
         <Hero />
         <Services />
         <WhyChooseUs />
+        <Contact />
         {/* More sections will be added in future iterations */}
       </main>
       <Footer />
