@@ -1,10 +1,11 @@
 
 import { SectionContainer } from "@/components/ui/Container";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { 
   Cloud, Server, Network, Code, Workflow, ArrowRight 
 } from "lucide-react";
+import { CustomCard } from "@/components/ui/CustomCard";
 
 const services = [
   {
@@ -55,7 +56,7 @@ export function Services() {
         {/* Services grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card 
+            <CustomCard 
               key={service.title} 
               hover={true} 
               className="flex flex-col h-full opacity-0"
@@ -72,7 +73,7 @@ export function Services() {
                   <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
-            </Card>
+            </CustomCard>
           ))}
         </div>
 
