@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MessageCircle } from "lucide-react";
 import { ConsultationForm } from "@/components/ConsultationForm";
+import { Link } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +21,7 @@ const navLinks = [
   { name: "Services", href: "#services" },
   { name: "Blog", href: "#blog" },
   { name: "Contact", href: "#contact" },
+  { name: "Live Chat", href: "/chat", highlight: true },
 ];
 
 export function Navbar() {
@@ -53,21 +55,44 @@ export function Navbar() {
       <Container>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold text-gradient">
+            <Link to="/" className="text-2xl font-bold text-gradient">
               TechXplore
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-md"
-              >
-                {link.name}
-              </a>
+              link.href.startsWith('#') ? (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={cn(
+                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-md",
+                    link.highlight && "text-primary"
+                  )}
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={cn(
+                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-md",
+                    link.highlight && "text-primary"
+                  )}
+                >
+                  {link.name === "Live Chat" ? (
+                    <span className="flex items-center gap-1">
+                      <MessageCircle className="h-4 w-4" />
+                      {link.name}
+                    </span>
+                  ) : (
+                    link.name
+                  )}
+                </Link>
+              )
             ))}
             <Dialog>
               <DialogTrigger asChild>
@@ -111,14 +136,38 @@ export function Navbar() {
         >
           <div className="px-4 py-4 space-y-2">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="block px-4 py-3 text-base font-medium text-foreground/90 hover:bg-secondary rounded-md"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </a>
+              link.href.startsWith('#') ? (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={cn(
+                    "block px-4 py-3 text-base font-medium text-foreground/90 hover:bg-secondary rounded-md",
+                    link.highlight && "text-primary"
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={cn(
+                    "block px-4 py-3 text-base font-medium text-foreground/90 hover:bg-secondary rounded-md",
+                    link.highlight && "text-primary"
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name === "Live Chat" ? (
+                    <span className="flex items-center gap-1">
+                      <MessageCircle className="h-4 w-4" />
+                      {link.name}
+                    </span>
+                  ) : (
+                    link.name
+                  )}
+                </Link>
+              )
             ))}
             <div className="pt-2 pb-1">
               <Dialog>
