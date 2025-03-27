@@ -56,8 +56,9 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <div className="relative w-8 h-8 mr-2 rounded-full bg-gradient-to-r from-primary-300 to-primary-600 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">TX</span>
+              <div className="relative w-10 h-10 mr-2 rounded-full bg-gradient-to-r from-primary-300 to-primary-600 flex items-center justify-center overflow-hidden">
+                <span className="text-white font-bold text-lg">TX</span>
+                {/* This div can be replaced with an actual logo image later */}
               </div>
               <span className="text-2xl font-bold text-gradient">TechXplore</span>
             </Link>
