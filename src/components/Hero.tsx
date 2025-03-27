@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/Container";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Cpu, Database, Server } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +20,11 @@ export function Hero() {
       <div aria-hidden="true" className="select-none pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] opacity-20 rounded-full bg-gradient-to-br from-primary-300 to-primary-600 blur-3xl" />
         <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] opacity-20 rounded-full bg-gradient-to-tr from-primary-300 to-primary-600 blur-3xl" />
+        
+        {/* Tech-related background elements */}
+        <Server className="absolute top-[20%] right-[15%] text-primary-200/20 w-32 h-32" />
+        <Cpu className="absolute bottom-[30%] left-[10%] text-primary-300/15 w-40 h-40" />
+        <Database className="absolute top-[40%] left-[20%] text-primary-200/10 w-24 h-24" />
       </div>
 
       <Container className="pt-16 pb-24 md:pt-20 md:pb-32">

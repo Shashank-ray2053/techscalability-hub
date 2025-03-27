@@ -3,7 +3,7 @@ import { SectionContainer } from "@/components/ui/Container";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
-  Cloud, Server, Network, Code, Workflow, ArrowRight 
+  Cloud, Server, Network, Code, Workflow, ArrowRight, Cpu, Terminal, Wifi
 } from "lucide-react";
 import { CustomCard } from "@/components/ui/CustomCard";
 import {
@@ -91,6 +91,11 @@ export function Services() {
       {/* Background gradient */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-10 rounded-full bg-gradient-to-br from-primary-300 to-primary-600 blur-3xl" />
+        
+        {/* Tech-related background elements */}
+        <Cloud className="absolute top-[10%] right-[8%] text-primary-200/15 w-36 h-36" />
+        <Terminal className="absolute bottom-[20%] left-[5%] text-primary-300/10 w-28 h-28" />
+        <Wifi className="absolute top-[60%] right-[15%] text-primary-200/10 w-32 h-32 rotate-45" />
       </div>
 
       <div className="space-y-16">
