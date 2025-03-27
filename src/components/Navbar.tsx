@@ -19,7 +19,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
-  { name: "Blog", href: "#blog" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "#contact" },
   { name: "Live Chat", href: "/chat", highlight: true },
 ];
@@ -55,8 +55,11 @@ export function Navbar() {
       <Container>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-gradient">
-              TechXplore
+            <Link to="/" className="flex items-center">
+              <div className="relative w-8 h-8 mr-2 rounded-full bg-gradient-to-r from-primary-300 to-primary-600 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">TX</span>
+              </div>
+              <span className="text-2xl font-bold text-gradient">TechXplore</span>
             </Link>
           </div>
 
