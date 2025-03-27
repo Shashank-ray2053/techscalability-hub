@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { ConsultationForm } from "@/components/ConsultationForm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -27,6 +27,7 @@ const navLinks = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +43,20 @@ export function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith('#')) {
+      // Navigate to home page with the anchor
+      navigate('/' + href);
+    } else {
+      // Regular navigation
+      navigate(href);
+    }
+    // Close mobile menu if open
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <header
@@ -68,16 +83,16 @@ export function Navbar() {
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               link.href.startsWith('#') ? (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
+                  onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-md",
+                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-md text-left",
                     link.highlight && "text-primary"
                   )}
                 >
                   {link.name}
-                </a>
+                </button>
               ) : (
                 <Link
                   key={link.name}
@@ -141,17 +156,16 @@ export function Navbar() {
           <div className="px-4 py-4 space-y-2">
             {navLinks.map((link) => (
               link.href.startsWith('#') ? (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
+                  onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "block px-4 py-3 text-base font-medium text-foreground/90 hover:bg-secondary rounded-md",
+                    "block w-full px-4 py-3 text-base font-medium text-foreground/90 hover:bg-secondary rounded-md text-left",
                     link.highlight && "text-primary"
                   )}
-                  onClick={() => setIsOpen(false)}
                 >
                   {link.name}
-                </a>
+                </button>
               ) : (
                 <Link
                   key={link.name}
