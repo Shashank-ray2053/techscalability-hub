@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { ConsultationForm } from "@/components/ConsultationForm";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -28,6 +28,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,8 +47,17 @@ export function Navbar() {
 
   const handleNavClick = (href: string) => {
     if (href.startsWith('#')) {
-      // Navigate to home page with the anchor
-      navigate('/' + href);
+      // Check if we're already on the home page
+      if (location.pathname !== '/') {
+        // Navigate to home page first, then scroll to the section
+        navigate('/', { state: { scrollTo: href } });
+      } else {
+        // We're already on the home page, just scroll to the element
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     } else {
       // Regular navigation
       navigate(href);
@@ -57,6 +67,21 @@ export function Navbar() {
       setIsOpen(false);
     }
   };
+
+  // Listen for navigation with scrollTo state
+  useEffect(() => {
+    if (location.state && location.state.scrollTo) {
+      // Small timeout to ensure the page has loaded
+      setTimeout(() => {
+        const element = document.querySelector(location.state.scrollTo);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          // Clean up the state to prevent scrolling on refresh
+          navigate(location.pathname, { replace: true, state: {} });
+        }
+      }, 100);
+    }
+  }, [location, navigate]);
 
   return (
     <header
