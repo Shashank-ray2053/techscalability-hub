@@ -47,9 +47,10 @@ export function Navbar() {
 
   const handleNavClick = (href: string) => {
     if (href === "/") {
-      // Direct navigation to home page
+      // Direct navigation to home page always
       navigate("/");
       setIsOpen(false);
+      window.scrollTo(0, 0); // Scroll to top when going home
       return;
     }
     
@@ -69,6 +70,7 @@ export function Navbar() {
       // Regular navigation
       navigate(href);
     }
+    
     // Close mobile menu if open
     if (isOpen) {
       setIsOpen(false);
@@ -102,10 +104,15 @@ export function Navbar() {
       <Container>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <button onClick={() => navigate("/")} className="flex items-center">
+            <button 
+              onClick={() => {
+                navigate("/");
+                window.scrollTo(0, 0); // Ensure scroll to top
+              }} 
+              className="flex items-center"
+            >
               <div className="relative w-10 h-10 mr-2 rounded-full bg-gradient-to-r from-primary-300 to-primary-600 flex items-center justify-center overflow-hidden">
                 <span className="text-white font-bold text-lg">TX</span>
-                {/* This div can be replaced with an actual logo image later */}
               </div>
               <span className="text-2xl font-bold text-gradient">TechXplore</span>
             </button>
