@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { sendConsultationRequest } from "@/utils/emailService";
 
 export function ConsultationForm() {
   const { toast } = useToast();
@@ -36,19 +36,29 @@ export function ConsultationForm() {
     setFormData((prev) => ({ ...prev, service: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      // Send email with form data
+      await sendConsultationRequest(formData);
+      
       setLoading(false);
       setSubmitted(true);
       toast({
         title: "Request received!",
         description: "We'll get back to you within 24 hours.",
       });
-    }, 1500);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setLoading(false);
+      toast({
+        title: "Submission error",
+        description: "There was a problem sending your request. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   if (submitted) {

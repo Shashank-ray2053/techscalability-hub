@@ -2,9 +2,9 @@
 // Knowledge base for the AI chat system
 // This can be expanded with more data or connected to an external API in the future
 
-type KnowledgeCategory = 'general' | 'services' | 'pricing' | 'support' | 'technical';
+export type KnowledgeCategory = 'general' | 'services' | 'pricing' | 'support' | 'technical';
 
-interface KnowledgeItem {
+export interface KnowledgeItem {
   keywords: string[];
   response: string;
   category: KnowledgeCategory;
@@ -68,14 +68,31 @@ export const knowledgeBase: KnowledgeItem[] = [
   }
 ];
 
+// Load knowledge base from localStorage if available
+const getActiveKnowledgeBase = (): KnowledgeItem[] => {
+  const savedKnowledgeBase = localStorage.getItem('chatKnowledgeBase');
+  if (savedKnowledgeBase) {
+    try {
+      return JSON.parse(savedKnowledgeBase);
+    } catch (error) {
+      console.error("Error parsing saved knowledge base:", error);
+      return knowledgeBase;
+    }
+  }
+  return knowledgeBase;
+};
+
 export const findBestResponse = (userMessage: string): string => {
+  // Get the active knowledge base (default or customized)
+  const activeKnowledgeBase = getActiveKnowledgeBase();
+  
   // Convert user message to lowercase for case-insensitive matching
   const lowercaseMessage = userMessage.toLowerCase();
   
   // If message is very short, less than 2 words, use generic response
   if (lowercaseMessage.split(' ').filter(word => word.length > 0).length < 2) {
     // Check for direct matches with simple greetings
-    const greetings = knowledgeBase.find(item => 
+    const greetings = activeKnowledgeBase.find(item => 
       item.category === 'general' && 
       item.keywords.some(keyword => lowercaseMessage.includes(keyword))
     );
@@ -84,7 +101,7 @@ export const findBestResponse = (userMessage: string): string => {
   }
   
   // Calculate relevance score for each knowledge item
-  const scoredResponses = knowledgeBase.map(item => {
+  const scoredResponses = activeKnowledgeBase.map(item => {
     let score = 0;
     
     // Calculate score based on keyword matches
