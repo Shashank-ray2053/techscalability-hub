@@ -11,8 +11,8 @@ interface ConsultationFormData {
 }
 
 // Initialize with default receiving address
-let adminEmail = "admin@techxplore.com";
-let adminPhone = "+1234567890";
+let adminEmail = "shashankray2053@gmail.com";
+let adminPhone = "9844418804";
 
 // Allow updating notification settings
 export const updateNotificationSettings = (email: string, phone?: string) => {

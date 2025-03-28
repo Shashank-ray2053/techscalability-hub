@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -30,8 +29,8 @@ const AdminPage = () => {
   const { toast } = useToast();
   const [knowledgeBase, setKnowledgeBase] = useState<KnowledgeItem[]>([]);
   const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(null);
-  const [adminEmail, setAdminEmail] = useState("");
-  const [adminPhone, setAdminPhone] = useState("");
+  const [adminEmail, setAdminEmail] = useState("shashankray2053@gmail.com");
+  const [adminPhone, setAdminPhone] = useState("9844418804");
   
   const [newItem, setNewItem] = useState({
     keywords: "",
@@ -39,15 +38,19 @@ const AdminPage = () => {
     category: "general" as KnowledgeCategory,
   });
 
-  // Load knowledge base on component mount
   useEffect(() => {
     const kb = loadKnowledgeBase();
     setKnowledgeBase(kb);
 
-    // Load notification settings
     const settings = loadNotificationSettings();
-    setAdminEmail(settings.adminEmail);
-    setAdminPhone(settings.adminPhone);
+    if (settings.adminEmail !== "shashankray2053@gmail.com") {
+      setAdminEmail(settings.adminEmail);
+    }
+    if (settings.adminPhone !== "9844418804") {
+      setAdminPhone(settings.adminPhone);
+    } else {
+      updateNotificationSettings("shashankray2053@gmail.com", "9844418804");
+    }
   }, []);
 
   const handleAddItem = () => {
