@@ -46,6 +46,13 @@ export function Navbar() {
   }, []);
 
   const handleNavClick = (href: string) => {
+    if (href === "/") {
+      // Direct navigation to home page
+      navigate("/");
+      setIsOpen(false);
+      return;
+    }
+    
     if (href.startsWith('#')) {
       // Check if we're already on the home page
       if (location.pathname !== '/') {
@@ -95,19 +102,19 @@ export function Navbar() {
       <Container>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center">
+            <button onClick={() => navigate("/")} className="flex items-center">
               <div className="relative w-10 h-10 mr-2 rounded-full bg-gradient-to-r from-primary-300 to-primary-600 flex items-center justify-center overflow-hidden">
                 <span className="text-white font-bold text-lg">TX</span>
                 {/* This div can be replaced with an actual logo image later */}
               </div>
               <span className="text-2xl font-bold text-gradient">TechXplore</span>
-            </Link>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              link.href.startsWith('#') ? (
+              link.href.startsWith('#') || link.href === "/" ? (
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
@@ -180,7 +187,7 @@ export function Navbar() {
         >
           <div className="px-4 py-4 space-y-2">
             {navLinks.map((link) => (
-              link.href.startsWith('#') ? (
+              link.href.startsWith('#') || link.href === "/" ? (
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
