@@ -1,5 +1,5 @@
 
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast";
 
 interface ConsultationFormData {
   name: string;
@@ -23,6 +23,11 @@ export const updateNotificationSettings = (email: string, phone?: string) => {
   localStorage.setItem("adminEmail", email);
   if (phone) localStorage.setItem("adminPhone", phone);
   
+  toast({
+    title: "Settings updated",
+    description: `Notifications will now be sent to ${email} and ${phone || 'no phone number'}.`
+  });
+  
   return { adminEmail, adminPhone };
 };
 
@@ -40,12 +45,20 @@ export const loadNotificationSettings = () => {
 // Initialize settings on app load
 loadNotificationSettings();
 
+// Function to validate email format
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 export const sendConsultationRequest = async (formData: ConsultationFormData) => {
   console.log("Sending consultation request to:", adminEmail);
   console.log("Notification SMS to:", adminPhone);
   
-  // In a real implementation, this would use a service like SendGrid, AWS SES, etc.
-  // For demo purposes, we'll simulate an API call
+  // Validate email format
+  if (!isValidEmail(adminEmail)) {
+    throw new Error("Invalid admin email format. Please update in settings.");
+  }
   
   try {
     // Simulate API call with a delay
@@ -69,31 +82,66 @@ export const sendConsultationRequest = async (formData: ConsultationFormData) =>
     
     console.log("Email content:", emailContent);
     
+    // Store submission in localStorage for admin review
+    const submissions = JSON.parse(localStorage.getItem("consultationSubmissions") || "[]");
+    submissions.push({
+      ...formData,
+      id: Date.now(),
+      timestamp: new Date().toISOString(),
+      status: "unread"
+    });
+    localStorage.setItem("consultationSubmissions", JSON.stringify(submissions));
+    
     // In a real implementation, you would:
     // 1. Make an API call to your backend
     // 2. Backend would use an email service to send the email
     // 3. Backend might also use a SMS service for notifications
     
-    // You could use fetch or axios, etc:
+    // Example using a service like EmailJS (would require API key):
     /*
-    const response = await fetch('/api/send-consultation', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        formData,
-        recipient: adminEmail,
-        notificationPhone: adminPhone
-      }),
-    });
-    
-    if (!response.ok) throw new Error('Failed to send email');
+    const response = await emailjs.send(
+      "service_id",
+      "template_id",
+      {
+        to_email: adminEmail,
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        phone: formData.phone || 'Not provided',
+        company: formData.company || 'Not provided',
+        service: formData.service || 'Not specified',
+      },
+      "user_id"
+    );
     */
     
-    // For this demo, we'll just log and return success
     return { success: true };
     
   } catch (error) {
     console.error("Error sending email:", error);
     throw new Error("Failed to send consultation request");
   }
+};
+
+// Get all submissions (for admin panel)
+export const getConsultationSubmissions = () => {
+  return JSON.parse(localStorage.getItem("consultationSubmissions") || "[]");
+};
+
+// Mark submission as read
+export const markSubmissionAsRead = (id: number) => {
+  const submissions = JSON.parse(localStorage.getItem("consultationSubmissions") || "[]");
+  const updatedSubmissions = submissions.map((sub: any) => 
+    sub.id === id ? { ...sub, status: "read" } : sub
+  );
+  localStorage.setItem("consultationSubmissions", JSON.stringify(updatedSubmissions));
+  return updatedSubmissions;
+};
+
+// Delete submission
+export const deleteSubmission = (id: number) => {
+  const submissions = JSON.parse(localStorage.getItem("consultationSubmissions") || "[]");
+  const updatedSubmissions = submissions.filter((sub: any) => sub.id !== id);
+  localStorage.setItem("consultationSubmissions", JSON.stringify(updatedSubmissions));
+  return updatedSubmissions;
 };

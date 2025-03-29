@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -11,6 +12,8 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { Eye, Trash2 } from "lucide-react";
 import { 
   loadKnowledgeBase, 
   saveKnowledgeBase, 
@@ -21,7 +24,10 @@ import {
 } from "@/utils/knowledgeBaseService";
 import { 
   loadNotificationSettings, 
-  updateNotificationSettings 
+  updateNotificationSettings,
+  getConsultationSubmissions,
+  markSubmissionAsRead,
+  deleteSubmission
 } from "@/utils/emailService";
 import { KnowledgeItem, KnowledgeCategory } from "@/utils/chatKnowledgeBase";
 
@@ -31,6 +37,8 @@ const AdminPage = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(null);
   const [adminEmail, setAdminEmail] = useState("shashankray2053@gmail.com");
   const [adminPhone, setAdminPhone] = useState("9844418804");
+  const [submissions, setSubmissions] = useState<any[]>([]);
+  const [selectedSubmission, setSelectedSubmission] = useState<any | null>(null);
   
   const [newItem, setNewItem] = useState({
     keywords: "",
@@ -39,9 +47,11 @@ const AdminPage = () => {
   });
 
   useEffect(() => {
+    // Load knowledge base
     const kb = loadKnowledgeBase();
     setKnowledgeBase(kb);
 
+    // Load notification settings
     const settings = loadNotificationSettings();
     if (settings.adminEmail !== "shashankray2053@gmail.com") {
       setAdminEmail(settings.adminEmail);
@@ -51,8 +61,13 @@ const AdminPage = () => {
     } else {
       updateNotificationSettings("shashankray2053@gmail.com", "9844418804");
     }
+    
+    // Load submissions
+    const subs = getConsultationSubmissions();
+    setSubmissions(subs);
   }, []);
 
+  // Knowledge base handlers
   const handleAddItem = () => {
     if (!newItem.keywords.trim() || !newItem.response.trim()) {
       toast({
@@ -178,6 +193,7 @@ const AdminPage = () => {
     });
   };
 
+  // Notification settings handlers
   const handleUpdateNotificationSettings = () => {
     if (!adminEmail) {
       toast({
@@ -204,6 +220,35 @@ const AdminPage = () => {
     }
   };
 
+  // Submission handlers
+  const handleViewSubmission = (submission: any) => {
+    setSelectedSubmission(submission);
+    if (submission.status === "unread") {
+      const updated = markSubmissionAsRead(submission.id);
+      setSubmissions(updated);
+    }
+  };
+
+  const handleDeleteSubmission = (id: number) => {
+    if (window.confirm("Are you sure you want to delete this submission?")) {
+      const updated = deleteSubmission(id);
+      setSubmissions(updated);
+      
+      if (selectedSubmission && selectedSubmission.id === id) {
+        setSelectedSubmission(null);
+      }
+      
+      toast({
+        title: "Submission deleted",
+        description: "The submission has been permanently deleted.",
+      });
+    }
+  };
+
+  const handleCloseSubmissionView = () => {
+    setSelectedSubmission(null);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -215,8 +260,10 @@ const AdminPage = () => {
             <TabsList className="mb-6">
               <TabsTrigger value="knowledge">Knowledge Base</TabsTrigger>
               <TabsTrigger value="notifications">Notification Settings</TabsTrigger>
+              <TabsTrigger value="submissions">Form Submissions</TabsTrigger>
             </TabsList>
             
+            {/* Knowledge Base Tab */}
             <TabsContent value="knowledge">
               <div className="grid md:grid-cols-2 gap-6">
                 <Card>
@@ -353,6 +400,7 @@ const AdminPage = () => {
               </div>
             </TabsContent>
             
+            {/* Notification Settings Tab */}
             <TabsContent value="notifications">
               <Card>
                 <CardHeader>
@@ -395,6 +443,155 @@ const AdminPage = () => {
                   </Button>
                 </CardFooter>
               </Card>
+            </TabsContent>
+            
+            {/* Form Submissions Tab */}
+            <TabsContent value="submissions">
+              <div className="grid md:grid-cols-2 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Consultation Requests</CardTitle>
+                    <CardDescription>
+                      View and manage incoming consultation requests
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="max-h-[500px] overflow-y-auto">
+                      {submissions.length === 0 ? (
+                        <div className="text-center py-8 text-muted-foreground">
+                          No form submissions yet.
+                        </div>
+                      ) : (
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Date</TableHead>
+                              <TableHead>Name</TableHead>
+                              <TableHead>Status</TableHead>
+                              <TableHead>Actions</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {submissions.map((submission) => (
+                              <TableRow key={submission.id}>
+                                <TableCell>
+                                  {new Date(submission.timestamp).toLocaleDateString()}
+                                </TableCell>
+                                <TableCell>{submission.name}</TableCell>
+                                <TableCell>
+                                  <Badge variant={submission.status === "unread" ? "default" : "outline"}>
+                                    {submission.status === "unread" ? "New" : "Read"}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  <div className="flex space-x-2">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() => handleViewSubmission(submission)}
+                                    >
+                                      <Eye className="h-4 w-4 mr-1" />
+                                      View
+                                    </Button>
+                                    <Button
+                                      variant="destructive"
+                                      size="sm"
+                                      onClick={() => handleDeleteSubmission(submission.id)}
+                                    >
+                                      <Trash2 className="h-4 w-4 mr-1" />
+                                      Delete
+                                    </Button>
+                                  </div>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                {selectedSubmission ? (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Submission Details</CardTitle>
+                      <CardDescription>
+                        Consultation request from {selectedSubmission.name}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-medium text-sm">Name</h4>
+                          <p>{selectedSubmission.name}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-sm">Submitted</h4>
+                          <p>{new Date(selectedSubmission.timestamp).toLocaleString()}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-sm">Email</h4>
+                          <p>{selectedSubmission.email}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-sm">Phone</h4>
+                          <p>{selectedSubmission.phone || "Not provided"}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-sm">Company</h4>
+                          <p>{selectedSubmission.company || "Not provided"}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-sm">Service</h4>
+                          <p>{selectedSubmission.service || "Not specified"}</p>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-medium text-sm">Message</h4>
+                        <div className="bg-muted p-3 rounded-md mt-1">
+                          <p className="whitespace-pre-wrap">{selectedSubmission.message}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                    <CardFooter className="flex justify-between">
+                      <Button 
+                        variant="outline" 
+                        onClick={handleCloseSubmissionView}
+                      >
+                        Close
+                      </Button>
+                      <div className="flex space-x-2">
+                        <Button 
+                          variant="outline"
+                          onClick={() => window.location.href = `mailto:${selectedSubmission.email}`}
+                        >
+                          Reply by Email
+                        </Button>
+                        <Button 
+                          variant="destructive"
+                          onClick={() => handleDeleteSubmission(selectedSubmission.id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                ) : (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>No Submission Selected</CardTitle>
+                      <CardDescription>
+                        Click on "View" next to any submission to see details
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="text-center py-10 text-muted-foreground">
+                      <p>Select a submission from the list to view details</p>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
             </TabsContent>
           </Tabs>
         </Container>
