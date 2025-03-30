@@ -111,10 +111,11 @@ export function Navbar() {
               }} 
               className="flex items-center"
             >
-              <div className="relative w-10 h-10 mr-2 rounded-full bg-gradient-to-r from-primary-300 to-primary-600 flex items-center justify-center overflow-hidden">
-                <span className="text-white font-bold text-lg">TX</span>
-              </div>
-              <span className="text-2xl font-bold text-gradient">TechXplore</span>
+              <img 
+                src="/lovable-uploads/0993bcf0-e6f7-4b25-8093-11036494fe09.png" 
+                alt="TechXplore Logo" 
+                className="h-10 mr-2"
+              />
             </button>
           </div>
 

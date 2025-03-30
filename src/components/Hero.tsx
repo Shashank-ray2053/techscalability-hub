@@ -32,7 +32,7 @@ export function Hero() {
           {/* Tag */}
           <div className="inline-flex items-center rounded-full border border-border bg-background/50 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-muted-foreground animate-fade-in">
             <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
-            Transforming Businesses with Technology
+            Solving IT Problems
           </div>
           
           {/* Headline */}
