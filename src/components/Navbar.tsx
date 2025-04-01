@@ -112,9 +112,9 @@ export function Navbar() {
               className="flex items-center"
             >
               <img 
-                src="/lovable-uploads/0993bcf0-e6f7-4b25-8093-11036494fe09.png" 
+                src="/lovable-uploads/de45441f-d8e7-48ef-ba8e-d2e6bf7cbf38.png" 
                 alt="TechXplore Logo" 
-                className="h-16 md:h-14 mr-2" // Increased height from h-10 to h-16/h-14
+                className="h-20 md:h-16 mr-2" // Increased height from h-16/h-14 to h-20/h-16
               />
             </button>
           </div>
