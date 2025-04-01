@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/button";
@@ -47,45 +46,36 @@ export function Navbar() {
 
   const handleNavClick = (href: string) => {
     if (href === "/") {
-      // Direct navigation to home page always
       navigate("/");
       setIsOpen(false);
-      window.scrollTo(0, 0); // Scroll to top when going home
+      window.scrollTo(0, 0);
       return;
     }
     
     if (href.startsWith('#')) {
-      // Check if we're already on the home page
       if (location.pathname !== '/') {
-        // Navigate to home page first, then scroll to the section
         navigate('/', { state: { scrollTo: href } });
       } else {
-        // We're already on the home page, just scroll to the element
         const element = document.querySelector(href);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }
     } else {
-      // Regular navigation
       navigate(href);
     }
     
-    // Close mobile menu if open
     if (isOpen) {
       setIsOpen(false);
     }
   };
 
-  // Listen for navigation with scrollTo state
   useEffect(() => {
     if (location.state && location.state.scrollTo) {
-      // Small timeout to ensure the page has loaded
       setTimeout(() => {
         const element = document.querySelector(location.state.scrollTo);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
-          // Clean up the state to prevent scrolling on refresh
           navigate(location.pathname, { replace: true, state: {} });
         }
       }, 100);
@@ -107,19 +97,18 @@ export function Navbar() {
             <button 
               onClick={() => {
                 navigate("/");
-                window.scrollTo(0, 0); // Ensure scroll to top
+                window.scrollTo(0, 0);
               }} 
               className="flex items-center"
             >
               <img 
-                src="/lovable-uploads/de45441f-d8e7-48ef-ba8e-d2e6bf7cbf38.png" 
+                src="/lovable-uploads/8ba19533-60ad-4952-b0e3-9764de070c12.png" 
                 alt="TechXplore Logo" 
-                className="h-28 md:h-24 mr-2" // Significantly increased height from h-20/h-16 to h-28/h-24
+                className="h-32 md:h-28 mr-2"
               />
             </button>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               link.href.startsWith('#') || link.href === "/" ? (
@@ -169,7 +158,6 @@ export function Navbar() {
             </Dialog>
           </nav>
 
-          {/* Mobile Navigation Toggle */}
           <button
             className="md:hidden p-2 rounded-md text-foreground"
             onClick={() => setIsOpen(!isOpen)}
@@ -186,7 +174,6 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Navigation Menu */}
         <div
           className={cn(
             "md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-md transition-all duration-300 overflow-hidden",
