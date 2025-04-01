@@ -114,7 +114,7 @@ export function Navbar() {
               <img 
                 src="/lovable-uploads/0993bcf0-e6f7-4b25-8093-11036494fe09.png" 
                 alt="TechXplore Logo" 
-                className="h-10 mr-2"
+                className="h-16 md:h-14 mr-2" // Increased height from h-10 to h-16/h-14
               />
             </button>
           </div>
