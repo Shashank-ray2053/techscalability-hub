@@ -59,7 +59,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow pt-32"> {/* Increased top padding from default to pt-32 to accommodate larger logo */}
         <Hero />
         <Services />
         <WhyChooseUs />
