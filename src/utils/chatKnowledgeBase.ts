@@ -1,6 +1,6 @@
 
 // Knowledge base for the AI chat system
-// This can be expanded with more data or connected to an external API in the future
+// This data is loaded from a JSON file for easier updates
 
 export type KnowledgeCategory = 'general' | 'services' | 'pricing' | 'support' | 'technical';
 
@@ -10,63 +10,9 @@ export interface KnowledgeItem {
   category: KnowledgeCategory;
 }
 
-export const knowledgeBase: KnowledgeItem[] = [
-  {
-    keywords: ['hello', 'hi', 'hey', 'greetings', 'good morning', 'good afternoon', 'good evening'],
-    response: "Hello! Welcome to TechXplore. How can I assist you today with your IT needs?",
-    category: 'general'
-  },
-  {
-    keywords: ['services', 'offer', 'solutions', 'provide'],
-    response: "We offer a range of IT services including Cloud Solutions, Cybersecurity, Network Infrastructure, and Software Development. Would you like more details about any specific service?",
-    category: 'services'
-  },
-  {
-    keywords: ['cloud', 'aws', 'azure', 'hosting'],
-    response: "Our Cloud Solutions include AWS and Azure deployment, cloud migration, optimization, and managed cloud services. We can help reduce costs while improving scalability and reliability.",
-    category: 'services'
-  },
-  {
-    keywords: ['security', 'cybersecurity', 'protection', 'secure'],
-    response: "Our Cybersecurity services include vulnerability assessments, penetration testing, security monitoring, and incident response. We help protect your business from evolving threats.",
-    category: 'services'
-  },
-  {
-    keywords: ['network', 'infrastructure', 'setup', 'hardware'],
-    response: "We provide comprehensive Network Infrastructure services including design, implementation, maintenance, and optimization for businesses of all sizes.",
-    category: 'services'
-  },
-  {
-    keywords: ['software', 'development', 'app', 'application', 'custom'],
-    response: "Our Software Development team builds custom applications, enterprise solutions, mobile apps, and web platforms tailored to your specific business requirements.",
-    category: 'services'
-  },
-  {
-    keywords: ['price', 'cost', 'pricing', 'quote', 'expensive'],
-    response: "Our pricing varies based on the specific services required. We offer flexible plans to accommodate businesses of all sizes. Would you like to schedule a consultation for a personalized quote?",
-    category: 'pricing'
-  },
-  {
-    keywords: ['contact', 'talk', 'human', 'agent', 'person', 'representative', 'support', 'help'],
-    response: "I'd be happy to connect you with one of our technical specialists. Could you please provide your name and email so our team can reach out to you?",
-    category: 'support'
-  },
-  {
-    keywords: ['schedule', 'appointment', 'meeting', 'book', 'consultation'],
-    response: "I can help you schedule a meeting with our team. What day and time works best for you? Our availability is typically Monday to Friday, 9 AM to 5 PM Eastern Time.",
-    category: 'support'
-  },
-  {
-    keywords: ['technical', 'problem', 'issue', 'error', 'not working', 'broken', 'help'],
-    response: "I understand you're experiencing a technical issue. Could you provide more details about the problem? For urgent matters, you might want to speak directly with our support team.",
-    category: 'technical'
-  },
-  {
-    keywords: ['brochure', 'information', 'details', 'document', 'download'],
-    response: "You can download our comprehensive brochure with detailed information about all our services here: [Download Brochure](/TechXplore-Brochure.pdf)",
-    category: 'general'
-  }
-];
+// Import knowledge base from JSON file
+import knowledgeBaseData from '../data/knowledgeBase.json';
+export const knowledgeBase: KnowledgeItem[] = knowledgeBaseData.knowledgeBase;
 
 // Load knowledge base from localStorage if available
 const getActiveKnowledgeBase = (): KnowledgeItem[] => {

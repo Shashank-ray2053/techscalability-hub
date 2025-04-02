@@ -88,7 +88,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "py-3 bg-white/90 backdrop-blur-md shadow-sm"
+          ? "py-3 bg-white/80 backdrop-blur-md shadow-sm"
           : "py-5 bg-transparent"
       )}
     >
@@ -105,7 +105,7 @@ export function Navbar() {
               <img 
                 src="/lovable-uploads/8ba19533-60ad-4952-b0e3-9764de070c12.png" 
                 alt="TechXplore Logo" 
-                className="h-48 md:h-44 mr-2"
+                className="h-56 md:h-52 mr-2"
               />
             </button>
           </div>
