@@ -9,7 +9,7 @@ const LiveChatPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow pt-60 pb-16"> {/* Increased top padding from pt-52 to pt-60 to accommodate larger logo */}
+      <main className="flex-grow pt-64 pb-16"> {/* Increased top padding from pt-60 to pt-64 to accommodate larger logo */}
         <div className="relative overflow-hidden bg-gradient-to-b from-background to-secondary/30 py-12">
           {/* Tech-related background elements */}
           <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">

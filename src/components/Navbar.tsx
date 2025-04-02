@@ -88,8 +88,8 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "py-3 bg-white/80 backdrop-blur-md shadow-sm"
-          : "py-5 bg-transparent"
+          ? "py-2 backdrop-blur-md bg-white/30 shadow-sm"
+          : "py-3 bg-transparent"
       )}
     >
       <Container>
@@ -105,19 +105,19 @@ export function Navbar() {
               <img 
                 src="/lovable-uploads/8ba19533-60ad-4952-b0e3-9764de070c12.png" 
                 alt="TechXplore Logo" 
-                className="h-56 md:h-52 mr-2"
+                className="h-60 md:h-56 mr-2"
               />
             </button>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1 bg-white/20 backdrop-blur-sm py-2 px-4 rounded-full">
             {navLinks.map((link) => (
               link.href.startsWith('#') || link.href === "/" ? (
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-md text-left",
+                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-full hover:bg-white/30",
                     link.highlight && "text-primary"
                   )}
                 >
@@ -128,7 +128,7 @@ export function Navbar() {
                   key={link.name}
                   to={link.href}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-md",
+                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-full hover:bg-white/30",
                     link.highlight && "text-primary"
                   )}
                 >
@@ -145,7 +145,7 @@ export function Navbar() {
             ))}
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="ml-4">Get Started</Button>
+                <Button className="ml-3 rounded-full">Get Started</Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
@@ -160,7 +160,7 @@ export function Navbar() {
           </nav>
 
           <button
-            className="md:hidden p-2 rounded-md text-foreground"
+            className="md:hidden p-2 rounded-full bg-white/20 backdrop-blur-sm text-foreground hover:bg-white/30 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
           >
@@ -177,7 +177,7 @@ export function Navbar() {
 
         <div
           className={cn(
-            "md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-md transition-all duration-300 overflow-hidden",
+            "md:hidden absolute top-full left-0 right-0 backdrop-blur-md bg-white/30 shadow-md transition-all duration-300 overflow-hidden",
             isOpen ? "max-h-screen" : "max-h-0"
           )}
         >
@@ -188,7 +188,7 @@ export function Navbar() {
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "block w-full px-4 py-3 text-base font-medium text-foreground/90 hover:bg-secondary rounded-md text-left",
+                    "block w-full px-4 py-3 text-base font-medium text-foreground/90 hover:bg-white/30 rounded-full text-left",
                     link.highlight && "text-primary"
                   )}
                 >
@@ -199,7 +199,7 @@ export function Navbar() {
                   key={link.name}
                   to={link.href}
                   className={cn(
-                    "block px-4 py-3 text-base font-medium text-foreground/90 hover:bg-secondary rounded-md",
+                    "block px-4 py-3 text-base font-medium text-foreground/90 hover:bg-white/30 rounded-full",
                     link.highlight && "text-primary"
                   )}
                   onClick={() => setIsOpen(false)}
@@ -218,7 +218,7 @@ export function Navbar() {
             <div className="pt-2 pb-1">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="w-full" onClick={() => setIsOpen(false)}>Get Started</Button>
+                  <Button className="w-full rounded-full" onClick={() => setIsOpen(false)}>Get Started</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[500px]">
                   <DialogHeader>
