@@ -88,7 +88,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "py-2 backdrop-blur-md bg-white/30 shadow-sm"
+          ? "py-2 bg-background/80 backdrop-blur-md shadow-sm"
           : "py-3 bg-transparent"
       )}
     >
@@ -105,19 +105,19 @@ export function Navbar() {
               <img 
                 src="/lovable-uploads/8ba19533-60ad-4952-b0e3-9764de070c12.png" 
                 alt="TechXplore Logo" 
-                className="h-60 md:h-56 mr-2"
+                className="h-20 w-auto" 
               />
             </button>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1 bg-white/20 backdrop-blur-sm py-2 px-4 rounded-full">
+          <nav className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
               link.href.startsWith('#') || link.href === "/" ? (
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-full hover:bg-white/30",
+                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-full hover:bg-white/20",
                     link.highlight && "text-primary"
                   )}
                 >
@@ -128,7 +128,7 @@ export function Navbar() {
                   key={link.name}
                   to={link.href}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-full hover:bg-white/30",
+                    "px-4 py-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors rounded-full hover:bg-white/20",
                     link.highlight && "text-primary"
                   )}
                 >
@@ -160,7 +160,7 @@ export function Navbar() {
           </nav>
 
           <button
-            className="md:hidden p-2 rounded-full bg-white/20 backdrop-blur-sm text-foreground hover:bg-white/30 transition-colors"
+            className="md:hidden p-2 rounded-full bg-white/10 backdrop-blur-sm text-foreground hover:bg-white/20 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
           >
@@ -177,7 +177,7 @@ export function Navbar() {
 
         <div
           className={cn(
-            "md:hidden absolute top-full left-0 right-0 backdrop-blur-md bg-white/30 shadow-md transition-all duration-300 overflow-hidden",
+            "md:hidden absolute top-full left-0 right-0 bg-background/80 backdrop-blur-md shadow-md transition-all duration-300 overflow-hidden",
             isOpen ? "max-h-screen" : "max-h-0"
           )}
         >
@@ -188,7 +188,7 @@ export function Navbar() {
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "block w-full px-4 py-3 text-base font-medium text-foreground/90 hover:bg-white/30 rounded-full text-left",
+                    "block w-full px-4 py-3 text-base font-medium text-foreground/90 hover:bg-white/20 rounded-full text-left",
                     link.highlight && "text-primary"
                   )}
                 >
@@ -199,7 +199,7 @@ export function Navbar() {
                   key={link.name}
                   to={link.href}
                   className={cn(
-                    "block px-4 py-3 text-base font-medium text-foreground/90 hover:bg-white/30 rounded-full",
+                    "block px-4 py-3 text-base font-medium text-foreground/90 hover:bg-white/20 rounded-full",
                     link.highlight && "text-primary"
                   )}
                   onClick={() => setIsOpen(false)}
