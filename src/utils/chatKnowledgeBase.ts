@@ -12,7 +12,9 @@ export interface KnowledgeItem {
 
 // Import knowledge base from JSON file
 import knowledgeBaseData from '../data/knowledgeBase.json';
-export const knowledgeBase: KnowledgeItem[] = knowledgeBaseData.knowledgeBase;
+
+// Validate that the imported data matches our type
+export const knowledgeBase: KnowledgeItem[] = knowledgeBaseData.knowledgeBase as KnowledgeItem[];
 
 // Load knowledge base from localStorage if available
 const getActiveKnowledgeBase = (): KnowledgeItem[] => {
