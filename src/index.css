@@ -117,4 +117,16 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-500;
   }
+  
+  .hero-gradient {
+    background: linear-gradient(90deg, #0077ff 0%, #00a3ff 100%);
+  }
+  
+  .global-card {
+    @apply rounded-xl border border-border bg-card p-6 shadow-lg transition-all duration-300 hover:shadow-xl;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-medium rounded-full transition-all duration-300 shadow-md hover:shadow-lg;
+  }
 }
