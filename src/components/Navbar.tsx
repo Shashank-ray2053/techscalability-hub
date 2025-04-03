@@ -105,7 +105,7 @@ export function Navbar() {
               <img 
                 src="/lovable-uploads/8ba19533-60ad-4952-b0e3-9764de070c12.png" 
                 alt="TechXplore Logo" 
-                className="h-20 w-auto" 
+                className="h-60 md:h-56 w-auto" 
               />
             </button>
           </div>
