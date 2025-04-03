@@ -94,7 +94,8 @@ export function Navbar() {
     >
       <Container>
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          {/* Logo container with overflow hidden to prevent affecting navbar height */}
+          <div className="flex items-center overflow-visible relative">
             <button 
               onClick={() => {
                 navigate("/");
@@ -105,7 +106,7 @@ export function Navbar() {
               <img 
                 src="/lovable-uploads/8ba19533-60ad-4952-b0e3-9764de070c12.png" 
                 alt="TechXplore Logo" 
-                className="h-60 md:h-56 w-auto" 
+                className="h-60 md:h-56 w-auto -mt-20 md:-mt-16" 
               />
             </button>
           </div>
