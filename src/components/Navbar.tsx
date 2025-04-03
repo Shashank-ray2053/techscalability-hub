@@ -94,8 +94,8 @@ export function Navbar() {
     >
       <Container>
         <div className="flex items-center justify-between">
-          {/* Logo container with overflow hidden to prevent affecting navbar height */}
-          <div className="flex items-center overflow-visible relative">
+          {/* Logo container with absolute positioning to prevent affecting navbar height */}
+          <div className="relative flex items-center">
             <button 
               onClick={() => {
                 navigate("/");
@@ -106,9 +106,11 @@ export function Navbar() {
               <img 
                 src="/lovable-uploads/8ba19533-60ad-4952-b0e3-9764de070c12.png" 
                 alt="TechXplore Logo" 
-                className="h-60 md:h-56 w-auto -mt-20 md:-mt-16" 
+                className="h-60 md:h-56 w-auto absolute -top-14 md:-top-12" 
               />
             </button>
+            {/* Invisible spacer to maintain proper layout with the absolutely positioned logo */}
+            <div className="w-[120px] md:w-[140px] h-8 md:h-10"></div>
           </div>
 
           <nav className="hidden md:flex items-center space-x-1">
