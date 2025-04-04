@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { ConsultationForm } from "@/components/ConsultationForm";
 import { LiveChat } from "@/components/LiveChat";
 export function Hero() {
-  return <div className="relative pt-20 overflow-hidden">
+  return <div className="relative pt-20 overflow-hidden bg-primary-500">
       {/* Background Elements */}
       <div aria-hidden="true" className="select-none pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] opacity-20 rounded-full bg-gradient-to-br from-primary-300 to-primary-600 blur-3xl" />
@@ -17,7 +17,7 @@ export function Hero() {
         <Database className="absolute top-[40%] left-[20%] text-primary-200/10 w-24 h-24" />
       </div>
 
-      <Container className="pt-16 pb-24 md:pt-20 md:pb-32 bg-yellow-500">
+      <Container className="pt-16 pb-24 md:pt-20 md:pb-32 bg-violet-500">
         <div className="flex flex-col items-center text-center space-y-10 md:space-y-12">
           {/* Tag */}
           <div className="inline-flex items-center rounded-full border border-border bg-background/50 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-muted-foreground animate-fade-in">
