@@ -89,13 +89,13 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
           ? "py-3 bg-background/90 backdrop-blur-lg shadow-md"
-          : "py-5 bg-transparent"
+          : "py-3 bg-transparent"  // Reduced padding to keep the menubar height consistent
       )}
     >
       <Container>
         <div className="flex items-center justify-between">
-          {/* Logo with improved visibility */}
-          <div className="relative flex items-center overflow-visible">
+          {/* Logo with improved visibility and extended width */}
+          <div className="flex items-center h-14 overflow-visible">
             <button 
               onClick={() => {
                 navigate("/");
@@ -106,11 +106,9 @@ export function Navbar() {
               <img 
                 src="/lovable-uploads/8ba19533-60ad-4952-b0e3-9764de070c12.png" 
                 alt="TechXplore Logo" 
-                className="h-72 md:h-68 w-auto absolute -top-16 md:-top-14 -left-5" 
+                className="h-20 w-auto max-w-[200px] translate-y-1" // Extended width and slightly adjusted position
               />
             </button>
-            {/* Invisible spacer */}
-            <div className="w-[130px] md:w-[150px] h-10 md:h-12"></div>
           </div>
 
           <nav className="hidden md:flex items-center space-x-2">
@@ -120,12 +118,13 @@ export function Navbar() {
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "px-5 py-2 text-sm font-medium transition-colors rounded-full hover:bg-primary/10",
+                    "px-5 py-2 text-sm font-medium rounded-full relative overflow-hidden transition-all",
+                    "before:content-[''] before:absolute before:inset-0 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
                     link.highlight 
-                      ? "text-primary font-semibold" 
+                      ? "text-white before:bg-primary-600" 
                       : scrolled 
-                        ? "text-foreground/90 hover:text-primary" 
-                        : "text-white hover:text-white/80"
+                        ? "text-foreground/90 hover:text-primary before:bg-primary/10" 
+                        : "text-white hover:text-white before:bg-white/20"
                   )}
                 >
                   {link.name}
@@ -135,12 +134,13 @@ export function Navbar() {
                   key={link.name}
                   to={link.href}
                   className={cn(
-                    "px-5 py-2 text-sm font-medium transition-colors rounded-full hover:bg-primary/10",
+                    "px-5 py-2 text-sm font-medium rounded-full relative overflow-hidden transition-all",
+                    "before:content-[''] before:absolute before:inset-0 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
                     link.highlight 
-                      ? "text-primary font-semibold" 
+                      ? "text-white before:bg-primary-600" 
                       : scrolled 
-                        ? "text-foreground/90 hover:text-primary" 
-                        : "text-white hover:text-white/80"
+                        ? "text-foreground/90 hover:text-primary before:bg-primary/10" 
+                        : "text-white hover:text-white before:bg-white/20"
                   )}
                 >
                   {link.name === "Live Chat" ? (
@@ -156,7 +156,7 @@ export function Navbar() {
             ))}
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="ml-3 rounded-full px-6 shadow-md bg-gradient-to-r from-primary to-primary-400 hover:from-primary-500 hover:to-primary-300">
+                <Button className="ml-3 rounded-full px-6 shadow-md bg-gradient-to-r from-primary to-primary-400 hover:from-primary-500 hover:to-primary-300 hover:scale-105 transition-all duration-300">
                   Get Started
                 </Button>
               </DialogTrigger>
@@ -206,8 +206,11 @@ export function Navbar() {
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "block w-full px-5 py-3 text-base font-medium hover:bg-primary/10 rounded-full text-left",
-                    link.highlight && "text-primary font-semibold"
+                    "block w-full px-5 py-3 text-base font-medium rounded-full text-left relative overflow-hidden",
+                    "before:content-[''] before:absolute before:inset-0 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
+                    link.highlight 
+                      ? "text-primary font-semibold before:bg-primary/10" 
+                      : "before:bg-primary/5"
                   )}
                 >
                   {link.name}
@@ -217,8 +220,11 @@ export function Navbar() {
                   key={link.name}
                   to={link.href}
                   className={cn(
-                    "block px-5 py-3 text-base font-medium hover:bg-primary/10 rounded-full",
-                    link.highlight && "text-primary font-semibold"
+                    "block px-5 py-3 text-base font-medium rounded-full relative overflow-hidden",
+                    "before:content-[''] before:absolute before:inset-0 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
+                    link.highlight 
+                      ? "text-primary font-semibold before:bg-primary/10" 
+                      : "before:bg-primary/5"
                   )}
                   onClick={() => setIsOpen(false)}
                 >
@@ -237,7 +243,7 @@ export function Navbar() {
               <Dialog>
                 <DialogTrigger asChild>
                   <Button 
-                    className="w-full rounded-full py-6 shadow-md bg-gradient-to-r from-primary to-primary-400 hover:from-primary-500 hover:to-primary-300 text-base" 
+                    className="w-full rounded-full py-6 shadow-md bg-gradient-to-r from-primary to-primary-400 hover:from-primary-500 hover:to-primary-300 hover:scale-105 transition-all duration-300 text-base" 
                     onClick={() => setIsOpen(false)}
                   >
                     Get Started
