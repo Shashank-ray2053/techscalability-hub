@@ -71,7 +71,7 @@ export function Navbar() {
     }
   }, [location, navigate]);
   return <header className="bg-slate-50">
-      <Container className="bg-slate-950">
+      <Container className="bg-yellow-500">
         <div className="flex items-center justify-between">
           <Logo />
           <DesktopNav navLinks={navLinks} scrolled={scrolled} handleNavClick={handleNavClick} />
