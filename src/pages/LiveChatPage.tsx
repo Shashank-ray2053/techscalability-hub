@@ -3,14 +3,14 @@ import { Footer } from "@/components/Footer";
 import { LiveChat } from "@/components/LiveChat";
 import { Container } from "@/components/ui/Container";
 import { Server, Database, Cloud } from "lucide-react";
-import { Navigation } from "@/components/Navigation";
+import { Navbar } from "@/components/Navbar";
 
 const LiveChatPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation transparent={false} />
+      <Navbar />
       
-      <main className="flex-grow pt-24 pb-16"> {/* Adjusted padding for the new header */}
+      <main className="flex-grow pt-24 pb-16">
         <div className="relative overflow-hidden bg-gradient-to-b from-background to-secondary/30 py-12">
           {/* Tech-related background elements */}
           <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">

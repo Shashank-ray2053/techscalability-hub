@@ -7,7 +7,7 @@ import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/ChatWidget";
-import { Navigation } from "@/components/Navigation";
+import { Navbar } from "@/components/Navbar";
 
 // Initialization function to handle animations
 const initAnimations = () => {
@@ -73,9 +73,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
-      <Navigation transparent={true} />
+      <Navbar />
 
-      <main className="flex-grow pt-24"> {/* Adjusted padding for the new header */}
+      <main className="flex-grow">
         <section className="w-full hero-gradient text-white">
           <Hero />
         </section>
