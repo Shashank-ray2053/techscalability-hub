@@ -27,12 +27,12 @@ export function DesktopNav({ navLinks, scrolled, handleNavClick }: DesktopNavPro
           href={link.href}
           highlight={link.highlight}
           scrolled={scrolled}
-          onClick={handleNavClick}
+          handleNavClick={handleNavClick}
         />
       ))}
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="ml-3 rounded-full px-6 shadow-md bg-gradient-to-r from-indigo-600 to-purple-500 hover:from-indigo-500 hover:to-purple-400 hover:scale-105 transition-all duration-300">
+          <Button className="ml-3 rounded-full px-6 shadow-md bg-gradient-to-r from-violet-600 to-purple-500 hover:from-violet-500 hover:to-purple-400 hover:scale-105 transition-all duration-300 hover-pulse">
             Get Started
           </Button>
         </DialogTrigger>

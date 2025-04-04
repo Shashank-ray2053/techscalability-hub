@@ -14,16 +14,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 210 100% 50%;
+    --primary: 260 80% 50%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 217 33% 96%;
+    --secondary: 260 30% 96%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 260 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 260 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -31,7 +31,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 210 100% 50%;
+    --ring: 260 80% 50%;
 
     --radius: 0.5rem;
 
@@ -49,7 +49,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 100% 50%;
+    --primary: 260 80% 50%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -115,11 +115,11 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-700 to-purple-500;
   }
   
   .hero-gradient {
-    background: linear-gradient(90deg, #0077ff 0%, #00a3ff 100%);
+    background: linear-gradient(90deg, #6d28d9 0%, #8b5cf6 100%);
   }
   
   .global-card {
@@ -127,7 +127,7 @@
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-medium rounded-full transition-all duration-300 shadow-md hover:shadow-lg;
+    @apply bg-gradient-to-r from-violet-700 to-purple-500 hover:from-violet-600 hover:to-purple-400 text-white font-medium rounded-full transition-all duration-300 shadow-md hover:shadow-lg;
   }
   
   /* Custom hover animations */
@@ -144,7 +144,7 @@
   }
   
   .hover-glow:hover {
-    @apply shadow-[0_0_15px_rgba(0,119,255,0.5)];
+    @apply shadow-[0_0_15px_rgba(109,40,217,0.5)];
   }
   
   .hover-text-underline {
@@ -157,5 +157,50 @@
   
   .hover-text-underline:hover::after {
     @apply w-full;
+  }
+
+  /* New hover animations */
+  .hover-pulse {
+    @apply transition-transform duration-300;
+  }
+  
+  .hover-pulse:hover {
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .hover-shimmer {
+    @apply relative overflow-hidden;
+  }
+  
+  .hover-shimmer::before {
+    @apply content-[''] absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] transition-transform duration-1000;
+  }
+  
+  .hover-shimmer:hover::before {
+    @apply translate-x-[100%];
+  }
+  
+  .hover-expand {
+    @apply relative overflow-hidden;
+  }
+  
+  .hover-expand::after {
+    @apply content-[''] absolute inset-0 scale-0 rounded-full bg-primary/10 transition-transform duration-300 ease-out;
+  }
+  
+  .hover-expand:hover::after {
+    @apply scale-100;
   }
 }

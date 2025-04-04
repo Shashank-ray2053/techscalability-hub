@@ -44,7 +44,7 @@ export function MobileMenu({ isOpen, navLinks, handleNavClick, setIsOpen }: Mobi
           <Dialog>
             <DialogTrigger asChild>
               <Button 
-                className="w-full rounded-full py-6 shadow-md bg-gradient-to-r from-indigo-600 to-purple-500 hover:from-indigo-500 hover:to-purple-400 hover:scale-105 transition-all duration-300 text-base" 
+                className="w-full rounded-full py-6 shadow-md bg-gradient-to-r from-violet-600 to-purple-500 hover:from-violet-500 hover:to-purple-400 hover:scale-105 transition-all duration-300 text-base hover-pulse" 
                 onClick={() => setIsOpen(false)}
               >
                 Get Started

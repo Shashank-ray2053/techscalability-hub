@@ -74,7 +74,7 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
           ? "py-3 bg-white/90 backdrop-blur-lg shadow-md"
-          : "py-3 bg-gradient-to-r from-indigo-900/80 to-purple-900/80 backdrop-blur-sm"
+          : "py-3 bg-gradient-to-r from-violet-900/80 to-purple-900/80 backdrop-blur-sm"
       )}
     >
       <Container>
@@ -90,7 +90,7 @@ export function Navbar() {
             className={cn(
               "md:hidden p-2 rounded-full backdrop-blur-sm transition-colors",
               scrolled
-                ? "bg-indigo-100 text-indigo-800 hover:bg-indigo-200"
+                ? "bg-violet-100 text-violet-800 hover:bg-violet-200"
                 : "bg-white/10 text-white hover:bg-white/20"
             )}
             onClick={() => setIsOpen(!isOpen)}

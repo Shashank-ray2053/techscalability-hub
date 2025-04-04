@@ -17,10 +17,9 @@ export function MobileNavLink({ name, href, highlight, onClick }: MobileNavLinkP
       <button
         onClick={() => onClick(href)}
         className={cn(
-          "block w-full px-5 py-3 text-base font-medium rounded-full text-left relative overflow-hidden",
-          "before:content-[''] before:absolute before:inset-0 before:scale-y-0 before:origin-bottom before:bg-gradient-to-r before:from-indigo-500/10 before:to-purple-500/10 before:transition-transform before:duration-300 hover:before:scale-y-100 before:z-[-1]",
+          "block w-full px-5 py-3 text-base font-medium rounded-full text-left relative overflow-hidden hover-shimmer",
           highlight 
-            ? "text-indigo-600 font-semibold" 
+            ? "text-violet-600 font-semibold" 
             : "text-gray-700"
         )}
       >
@@ -34,10 +33,9 @@ export function MobileNavLink({ name, href, highlight, onClick }: MobileNavLinkP
     <Link
       to={href}
       className={cn(
-        "block px-5 py-3 text-base font-medium rounded-full relative overflow-hidden",
-        "before:content-[''] before:absolute before:inset-0 before:scale-y-0 before:origin-bottom before:bg-gradient-to-r before:from-indigo-500/10 before:to-purple-500/10 before:transition-transform before:duration-300 hover:before:scale-y-100 before:z-[-1]",
+        "block px-5 py-3 text-base font-medium rounded-full relative overflow-hidden hover-shimmer",
         highlight 
-          ? "text-indigo-600 font-semibold" 
+          ? "text-violet-600 font-semibold" 
           : "text-gray-700"
       )}
     >

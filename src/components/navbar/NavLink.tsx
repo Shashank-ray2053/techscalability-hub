@@ -18,12 +18,11 @@ export function NavLink({ name, href, highlight, scrolled, onClick }: NavLinkPro
       <button
         onClick={() => onClick(href)}
         className={cn(
-          "px-5 py-2 text-sm font-medium rounded-full relative overflow-hidden transition-all",
-          "before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-purple-500/20 before:to-indigo-500/20 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
+          "px-5 py-2 text-sm font-medium rounded-full relative overflow-hidden transition-all hover-expand",
           highlight 
-            ? "text-indigo-500 font-semibold" 
+            ? "text-violet-500 font-semibold" 
             : scrolled 
-              ? "text-gray-800 hover:text-indigo-600" 
+              ? "text-gray-800 hover:text-violet-600" 
               : "text-white hover:text-white"
         )}
       >
@@ -37,12 +36,11 @@ export function NavLink({ name, href, highlight, scrolled, onClick }: NavLinkPro
     <Link
       to={href}
       className={cn(
-        "px-5 py-2 text-sm font-medium rounded-full relative overflow-hidden transition-all",
-        "before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-purple-500/20 before:to-indigo-500/20 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
+        "px-5 py-2 text-sm font-medium rounded-full relative overflow-hidden transition-all hover-expand",
         highlight 
-          ? "text-indigo-500 font-semibold" 
+          ? "text-violet-500 font-semibold" 
           : scrolled 
-            ? "text-gray-800 hover:text-indigo-600" 
+            ? "text-gray-800 hover:text-violet-600" 
             : "text-white hover:text-white"
       )}
     >

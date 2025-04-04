@@ -28,16 +28,16 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					50: '#e6f2ff',
-					100: '#cce4ff',
-					200: '#99c9ff',
-					300: '#66adff',
-					400: '#3392ff',
-					500: '#0077ff',
-					600: '#0066db',
-					700: '#0055b7',
-					800: '#004493',
-					900: '#00336f',
+					50: '#f5f3ff',
+					100: '#ede9fe',
+					200: '#ddd6fe',
+					300: '#c4b5fd',
+					400: '#a78bfa',
+					500: '#8b5cf6',
+					600: '#7c3aed',
+					700: '#6d28d9',
+					800: '#5b21b6',
+					900: '#4c1d95',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -128,6 +128,10 @@ export default {
 						filter: 'blur(0)'
 					},
 				},
+				'pulse': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.05)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -143,6 +147,7 @@ export default {
 				'reveal-delay-2': 'reveal 0.6s ease-out 0.2s forwards',
 				'reveal-delay-3': 'reveal 0.6s ease-out 0.3s forwards',
 				'reveal-delay-4': 'reveal 0.6s ease-out 0.4s forwards',
+				'pulse': 'pulse 2s infinite',
 			},
 		}
 	},
