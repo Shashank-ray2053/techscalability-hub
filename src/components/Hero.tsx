@@ -17,7 +17,7 @@ export function Hero() {
         <Database className="absolute top-[40%] left-[20%] text-primary-200/10 w-24 h-24" />
       </div>
 
-      <Container className="pt-16 pb-24 md:pt-20 md:pb-32 bg-violet-500">
+      <Container className="pt-16 pb-24 md:pt-20 md:pb-32 bg-slate-900">
         <div className="flex flex-col items-center text-center space-y-10 md:space-y-12">
           {/* Tag */}
           <div className="inline-flex items-center rounded-full border border-border bg-background/50 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-muted-foreground animate-fade-in">
