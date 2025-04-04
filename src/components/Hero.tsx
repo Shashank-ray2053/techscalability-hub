@@ -1,28 +1,23 @@
-import { Button } from "@/components/ui/button";
+
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { ArrowRight, Check, Cpu, Database, Server } from "lucide-react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ConsultationForm } from "@/components/ConsultationForm";
-import { LiveChat } from "@/components/LiveChat";
+import { ArrowRight, Check } from "lucide-react";
+
 export function Hero() {
-  return <div className="relative pt-20 overflow-hidden bg-slate-900">
+  return (
+    <div className="relative pt-20 overflow-hidden">
       {/* Background Elements */}
       <div aria-hidden="true" className="select-none pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] opacity-20 rounded-full bg-gradient-to-br from-primary-300 to-primary-600 blur-3xl" />
         <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] opacity-20 rounded-full bg-gradient-to-tr from-primary-300 to-primary-600 blur-3xl" />
-        
-        {/* Tech-related background elements */}
-        <Server className="absolute top-[20%] right-[15%] text-primary-200/20 w-32 h-32" />
-        <Cpu className="absolute bottom-[30%] left-[10%] text-primary-300/15 w-40 h-40" />
-        <Database className="absolute top-[40%] left-[20%] text-primary-200/10 w-24 h-24" />
       </div>
 
-      <Container className="pt-16 pb-24 md:pt-20 md:pb-32 bg-slate-900">
+      <Container className="pt-16 pb-24 md:pt-20 md:pb-32">
         <div className="flex flex-col items-center text-center space-y-10 md:space-y-12">
           {/* Tag */}
           <div className="inline-flex items-center rounded-full border border-border bg-background/50 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-muted-foreground animate-fade-in">
             <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
-            Solving IT Problems
+            Transforming Businesses with Technology
           </div>
           
           {/* Headline */}
@@ -37,40 +32,13 @@ export function Hero() {
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-8 opacity-0 animate-reveal-delay-2">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="lg" className="font-medium px-6 py-6">
-                  Get Free Consultation
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[500px]">
-                <DialogHeader>
-                  <DialogTitle>Free Consultation</DialogTitle>
-                  <DialogDescription>
-                    Fill out this form to request a free consultation with our experts.
-                  </DialogDescription>
-                </DialogHeader>
-                <ConsultationForm />
-              </DialogContent>
-            </Dialog>
-            
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="lg" variant="outline" className="font-medium px-6 py-6">
-                  Live Chat Support
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Live Chat Support</DialogTitle>
-                  <DialogDescription>
-                    Chat with our support team for immediate assistance.
-                  </DialogDescription>
-                </DialogHeader>
-                <LiveChat />
-              </DialogContent>
-            </Dialog>
+            <Button size="lg" className="font-medium px-6 py-6">
+              Get Free Consultation
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            <Button size="lg" variant="outline" className="font-medium px-6 py-6">
+              Explore Our Solutions
+            </Button>
           </div>
           
           {/* Trust badges */}
@@ -94,5 +62,6 @@ export function Hero() {
           </div>
         </div>
       </Container>
-    </div>;
+    </div>
+  );
 }

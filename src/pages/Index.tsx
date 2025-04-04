@@ -1,13 +1,10 @@
 
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
-import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { ChatWidget } from "@/components/ChatWidget";
-import { Navbar } from "@/components/Navbar";
 
 // Initialization function to handle animations
 const initAnimations = () => {
@@ -52,39 +49,21 @@ const initAnimations = () => {
 };
 
 const Index = () => {
-  const location = useLocation();
-
   useEffect(() => {
     const cleanup = initAnimations();
     return cleanup;
   }, []);
 
-  useEffect(() => {
-    if (location.state && location.state.scrollTo) {
-      setTimeout(() => {
-        const element = document.querySelector(location.state.scrollTo);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-          history.replaceState({}, document.title);
-        }
-      }, 100);
-    }
-  }, [location]);
-
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Navbar />
-
       <main className="flex-grow">
-        <section className="w-full hero-gradient text-white">
-          <Hero />
-        </section>
+        <Hero />
         <Services />
         <WhyChooseUs />
-        <Contact />
+        {/* More sections will be added in future iterations */}
       </main>
       <Footer />
-      <ChatWidget />
     </div>
   );
 };

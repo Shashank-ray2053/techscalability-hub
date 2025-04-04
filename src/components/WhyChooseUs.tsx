@@ -1,8 +1,8 @@
 
 import { SectionContainer } from "@/components/ui/Container";
-import { GlassCard } from "@/components/ui/CustomCard";
+import { GlassCard } from "@/components/ui/Card";
 import { 
-  Clock, Award, TrendingUp, Cpu, Server, Database, Cloud
+  Clock, Award, TrendingUp, Cpu
 } from "lucide-react";
 
 const benefits = [
@@ -31,13 +31,6 @@ const benefits = [
 export function WhyChooseUs() {
   return (
     <SectionContainer id="about" className="relative overflow-hidden bg-gradient-to-b from-background to-secondary/30">
-      {/* Tech-related background elements */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <Server className="absolute top-[10%] left-[5%] text-primary-200/10 w-32 h-32 rotate-12" />
-        <Database className="absolute bottom-[15%] right-[10%] text-primary-300/10 w-36 h-36 -rotate-6" />
-        <Cloud className="absolute top-[35%] right-[15%] text-primary-200/15 w-24 h-24" />
-      </div>
-      
       <div className="space-y-16">
         {/* Section header */}
         <div className="max-w-3xl mx-auto text-center space-y-4">
