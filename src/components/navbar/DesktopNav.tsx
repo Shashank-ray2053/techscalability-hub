@@ -1,7 +1,6 @@
 
 import { Button } from "@/components/ui/button";
 import { ConsultationForm } from "@/components/ConsultationForm";
-import { MessageCircle } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -11,8 +10,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { NavLink } from "./NavLink";
-import { Link } from "react-router-dom";
-import { cn } from "@/lib/utils";
 
 interface DesktopNavProps {
   navLinks: Array<{ name: string; href: string; highlight?: boolean }>;
@@ -35,7 +32,7 @@ export function DesktopNav({ navLinks, scrolled, handleNavClick }: DesktopNavPro
       ))}
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="ml-3 rounded-full px-6 shadow-md bg-gradient-to-r from-primary to-primary-400 hover:from-primary-500 hover:to-primary-300 hover:scale-105 transition-all duration-300">
+          <Button className="ml-3 rounded-full px-6 shadow-md bg-gradient-to-r from-indigo-600 to-purple-500 hover:from-indigo-500 hover:to-purple-400 hover:scale-105 transition-all duration-300">
             Get Started
           </Button>
         </DialogTrigger>

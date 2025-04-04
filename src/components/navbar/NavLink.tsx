@@ -1,6 +1,7 @@
 
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import { MessageCircle } from "lucide-react";
 
 interface NavLinkProps {
   name: string;
@@ -18,12 +19,12 @@ export function NavLink({ name, href, highlight, scrolled, onClick }: NavLinkPro
         onClick={() => onClick(href)}
         className={cn(
           "px-5 py-2 text-sm font-medium rounded-full relative overflow-hidden transition-all",
-          "before:content-[''] before:absolute before:inset-0 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
+          "before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-purple-500/20 before:to-indigo-500/20 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
           highlight 
-            ? "text-white before:bg-primary-600" 
+            ? "text-indigo-500 font-semibold" 
             : scrolled 
-              ? "text-foreground/90 hover:text-primary before:bg-primary/10" 
-              : "text-white hover:text-white before:bg-white/20"
+              ? "text-gray-800 hover:text-indigo-600" 
+              : "text-white hover:text-white"
         )}
       >
         {name}
@@ -37,12 +38,12 @@ export function NavLink({ name, href, highlight, scrolled, onClick }: NavLinkPro
       to={href}
       className={cn(
         "px-5 py-2 text-sm font-medium rounded-full relative overflow-hidden transition-all",
-        "before:content-[''] before:absolute before:inset-0 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
+        "before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-purple-500/20 before:to-indigo-500/20 before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-left before:z-[-1]",
         highlight 
-          ? "text-white before:bg-primary-600" 
+          ? "text-indigo-500 font-semibold" 
           : scrolled 
-            ? "text-foreground/90 hover:text-primary before:bg-primary/10" 
-            : "text-white hover:text-white before:bg-white/20"
+            ? "text-gray-800 hover:text-indigo-600" 
+            : "text-white hover:text-white"
       )}
     >
       {name === "Live Chat" ? (

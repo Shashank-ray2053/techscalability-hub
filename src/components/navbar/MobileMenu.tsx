@@ -23,7 +23,7 @@ export function MobileMenu({ isOpen, navLinks, handleNavClick, setIsOpen }: Mobi
   return (
     <div
       className={cn(
-        "md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg shadow-lg transition-all duration-300 overflow-hidden",
+        "md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg shadow-lg transition-all duration-300 overflow-hidden",
         isOpen ? "max-h-screen" : "max-h-0"
       )}
     >
@@ -44,7 +44,7 @@ export function MobileMenu({ isOpen, navLinks, handleNavClick, setIsOpen }: Mobi
           <Dialog>
             <DialogTrigger asChild>
               <Button 
-                className="w-full rounded-full py-6 shadow-md bg-gradient-to-r from-primary to-primary-400 hover:from-primary-500 hover:to-primary-300 hover:scale-105 transition-all duration-300 text-base" 
+                className="w-full rounded-full py-6 shadow-md bg-gradient-to-r from-indigo-600 to-purple-500 hover:from-indigo-500 hover:to-purple-400 hover:scale-105 transition-all duration-300 text-base" 
                 onClick={() => setIsOpen(false)}
               >
                 Get Started

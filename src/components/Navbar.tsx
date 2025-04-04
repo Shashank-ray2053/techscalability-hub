@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Logo } from "./navbar/Logo";
 import { DesktopNav } from "./navbar/DesktopNav";
@@ -73,8 +73,8 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "py-3 bg-background/90 backdrop-blur-lg shadow-md"
-          : "py-3 bg-transparent"
+          ? "py-3 bg-white/90 backdrop-blur-lg shadow-md"
+          : "py-3 bg-gradient-to-r from-indigo-900/80 to-purple-900/80 backdrop-blur-sm"
       )}
     >
       <Container>
@@ -90,8 +90,8 @@ export function Navbar() {
             className={cn(
               "md:hidden p-2 rounded-full backdrop-blur-sm transition-colors",
               scrolled
-                ? "bg-white/10 text-foreground hover:bg-white/20"
-                : "bg-black/10 text-white hover:bg-black/20"
+                ? "bg-indigo-100 text-indigo-800 hover:bg-indigo-200"
+                : "bg-white/10 text-white hover:bg-white/20"
             )}
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
