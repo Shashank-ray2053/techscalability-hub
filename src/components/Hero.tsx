@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { ConsultationForm } from "@/components/ConsultationForm";
 import { LiveChat } from "@/components/LiveChat";
 export function Hero() {
-  return <div className="relative pt-20 overflow-hidden bg-primary-500">
+  return <div className="relative pt-20 overflow-hidden bg-slate-900">
       {/* Background Elements */}
       <div aria-hidden="true" className="select-none pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] opacity-20 rounded-full bg-gradient-to-br from-primary-300 to-primary-600 blur-3xl" />
